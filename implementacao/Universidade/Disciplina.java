@@ -21,16 +21,24 @@ public class Disciplina {
     }
 
     public void adicionarAluno(Aluno aluno) {
-        if(alunosMatriculados() == 60)
+        if(numeroMatriculas() == 60)
             throw new Error("Numero maximo de alunos atingido");
 
         alunos.add(aluno);
     }
-    public void removerrAluno(Aluno aluno) {
+    public void removerAluno(Aluno aluno) {
         alunos.remove(aluno);
     }
 
-    public Integer alunosMatriculados() {
+    public Integer numeroMatriculas() {
         return this.alunos.size();
+    }
+
+    public List<Aluno> alunosMatriculados() {
+        return new ArrayList<>(this.alunos);
+    }
+
+    public String getNome() {
+        return this.nome;
     }
 }
