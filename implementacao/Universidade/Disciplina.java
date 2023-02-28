@@ -20,7 +20,7 @@ public class Disciplina {
     }
 
     public void adicionarAluno(Aluno aluno) {
-        if (alunosMatriculados() >= 60 && aluno.podeMatricular(getTipoDisciplina()))
+        if (alunosMatriculados().size() >= 60 && aluno.podeMatricular(getTipoDisciplina()))
             throw new Error("Numero maximo de alunos atingido");
 
         alunos.add(aluno);
@@ -30,8 +30,8 @@ public class Disciplina {
         alunos.remove(aluno);
     }
 
-    public Integer alunosMatriculados() {
-        return this.alunos.size();
+    public List<Aluno> alunosMatriculados() {
+        return this.alunos;
     }
 
     public TipoDisciplina getTipoDisciplina() {
