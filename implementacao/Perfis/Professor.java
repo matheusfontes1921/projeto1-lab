@@ -26,7 +26,6 @@ public class Professor extends Usuario {
         for (Disciplina disciplina : this.disciplinas) {
             alunoPorDisciplina.put(disciplina, disciplina.alunosMatriculados());
         }
-
         return alunoPorDisciplina;
     }
 }
