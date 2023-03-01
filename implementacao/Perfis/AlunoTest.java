@@ -1,7 +1,9 @@
-package Universidade;
+package Perfis;
 
 import Perfis.Aluno;
 import Perfis.Professor;
+import Universidade.Disciplina;
+import Universidade.TipoDisciplina;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

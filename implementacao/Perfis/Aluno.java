@@ -18,6 +18,7 @@ public class Aluno extends Usuario {
 
     /**
      * Método que adiciona uma disciplina a grade do aluno
+     *
      * @param disciplina A disciplina que será inserida
      * @return TRUE caso a disciplina for inserida, False caso não couber mais disciplinas
      */
@@ -31,6 +32,7 @@ public class Aluno extends Usuario {
 
     /**
      * Verifica se o aluno Pode adicionar mais uma disciplina na sua lista de disciplinas
+     *
      * @param tipoDisciplina Optativa ou Obrigatoria
      * @return True se poder, False caso nao caibam mais disciplinas do tipo
      */
@@ -39,5 +41,16 @@ public class Aluno extends Usuario {
             return listaDisciplinas.stream().filter(disciplina -> disciplina.getTipoDisciplina().equals(TipoDisciplina.Obrigatoria)).count() < 4;
         else
             return listaDisciplinas.stream().filter(disciplina -> disciplina.getTipoDisciplina().equals(TipoDisciplina.Optativa)).count() < 2;
+    }
+
+    /**
+     * Retira a Disciplina da lista de disciplinas do aluno
+     *
+     * @param nomeDisciplina chave para busca na lista das disciplinas
+     * @return True caso a disciplina for retirada, False caso ela não exista nas disciplinas dos alunos
+     */
+    public boolean cancelarMatricula(String nomeDisciplina) {
+        listaDisciplinas.removeIf(disciplina -> disciplina.getNome().equals(nomeDisciplina));
+        return false;
     }
 }
