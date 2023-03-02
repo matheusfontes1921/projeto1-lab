@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Aluno extends Usuario {
 
-    private List<Disciplina> listaDisciplinas;
+    private final List<Disciplina> listaDisciplinas;
 
     public Aluno(String nome, String email, String senha) {
         super(nome, email, senha);
