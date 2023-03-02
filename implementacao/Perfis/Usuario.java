@@ -5,6 +5,8 @@ public abstract class Usuario implements Logavel {
     private String nome;
     private String email;
     private String senha;
+
+    // private final String senhaReal = "123";
     private static int id = 0;
 
     public Usuario(String nome, String email, String senha) {
@@ -18,5 +20,9 @@ public abstract class Usuario implements Logavel {
         return id++;
     }
 
-
+    /* método de logar que será implementado na interface logável
+    private boolean logar(String senha) {
+        return (this.senha.equals(senhaReal));
+    }
+    */
 }

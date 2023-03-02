@@ -21,6 +21,10 @@ public class Disciplina {
     }
 
 
+    /*
+        @param aluno o aluno que será inserido da classe aluno
+        se a disciplina está disponível, o aluno será inserido no array de alunos na disciplina
+     */
     public void adicionarAluno(Aluno aluno) {
         if (disciplinaMatriculavel() && aluno.matricular(this))
             throw new Error("Numero maximo de alunos atingido");
@@ -36,7 +40,7 @@ public class Disciplina {
     }
 
     private boolean disciplinaMatriculavel() {
-        return alunos.size() != LIMITE_ALUNOS;
+        return alunos.size() < LIMITE_ALUNOS;
     }
 
 
