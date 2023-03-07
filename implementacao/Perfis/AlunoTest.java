@@ -10,6 +10,11 @@ import org.junit.jupiter.api.Test;
 
 
 public class AlunoTest {
+    /*
+    Classe utilizada para testes que envolvem
+    inicialização de disciplina, criação de novos alunos e professores,
+
+     */
     static Aluno aluno;
     static Professor professor;
     static Disciplina obrigatoria;

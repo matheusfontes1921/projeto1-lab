@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Disciplina {
+
+    //#REGION ATTRIBUTES
     private static final Integer LIMITE_ALUNOS = 60;
 
     private String nome;
@@ -14,6 +16,10 @@ public class Disciplina {
     private TipoDisciplina tipo;
     private List<Aluno> alunos = new ArrayList<>();
 
+    //#ENDREGION
+
+    //Construtor para inicialização do aluno, professor e tipo da disciplina
+    //utilização do enum
     Disciplina(String nome, Professor professor, TipoDisciplina tipo) {
         this.nome = nome;
         this.professor = professor;

@@ -8,9 +8,13 @@ import java.util.Map;
 
 public class Secretaria extends Usuario {
 
+    //#REGION ATTRIBUTES
     private List<Professor> professores;
     private List<Aluno> alunos;
     private List<Disciplina> disciplinas;
+    //#ENDREGION
+
+    //Construtor para secretaria que possui os mesmos parametros do professor, exceto a lista de disciplinas
     public Secretaria(String nome, String email, String senha) {
         super(nome, email, senha);
         professores = new ArrayList<>();

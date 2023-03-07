@@ -2,9 +2,11 @@ package Perfis;
 
 public abstract class Usuario implements Logavel {
 
+    //#REGION ATTRIBUTES
     private String nome;
     private String email;
     private String senha;
+    //#endregion
 
     // private final String senhaReal = "123";
     private static int id = 0;
