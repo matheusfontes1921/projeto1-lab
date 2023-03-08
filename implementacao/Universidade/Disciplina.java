@@ -10,6 +10,7 @@ public class Disciplina {
 
     //#REGION ATTRIBUTES
     private static final Integer LIMITE_ALUNOS = 60;
+    private static final Integer LIMITE_MIN_ALUNOS = 3;
 
     private String nome;
     private Professor professor;
