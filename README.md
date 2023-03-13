@@ -6,7 +6,7 @@
 ### aluno: Matheus Fontes Almeida Moreira Silva 
 
 ---------------------------------------------------------------
-## Perfis.Professor
+## Professor
 ### Cleiton Silva Tavares
 
 ---------------------------------------------------------------

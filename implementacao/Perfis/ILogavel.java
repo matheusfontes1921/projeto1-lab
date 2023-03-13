@@ -1,6 +1,6 @@
 package Perfis;
 
-public interface Logavel {
+public interface ILogavel {
 
     default void logar(String senha, String name) {
 

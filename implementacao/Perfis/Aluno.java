@@ -7,50 +7,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno extends Usuario {
+    private final Integer MaxOBRIGATORIAS = 4;
+    private final Integer MaxOPTATIVAS = 2;
 
-    private final List<Disciplina> listaDisciplinas;
+
+    private Integer numObrigatorias = 0;
+    private Integer numOptativas = 0;
+
 
     public Aluno(String nome, String email, String senha) {
         super(nome, email, senha);
-        listaDisciplinas = new ArrayList<>() {
-        };
     }
 
     /**
      * Método que adiciona uma disciplina a grade do aluno
      *
      * @param disciplina A disciplina que será inserida
-     * @return TRUE caso a disciplina for inserida, False caso não couber mais disciplinas
      */
-    public boolean matricular(Disciplina disciplina) {
-        if (podeMatricular(disciplina.getTipoDisciplina())) {
-            listaDisciplinas.add(disciplina);
-            return true;
-        }
-        return false;
-    }
+    public void matricular(Disciplina disciplina) {
+        disciplina.matricular(this);
 
-    /**
-     * Verifica se o aluno Pode adicionar mais uma disciplina na sua lista de disciplinas
-     *
-     * @param tipoDisciplina Optativa ou Obrigatoria
-     * @return True se poder, False caso nao caibam mais disciplinas do tipo
-     */
-    public boolean podeMatricular(TipoDisciplina tipoDisciplina) {
-        if (tipoDisciplina.equals(TipoDisciplina.Obrigatoria))
-            return listaDisciplinas.stream().filter(disciplina -> disciplina.getTipoDisciplina().equals(TipoDisciplina.Obrigatoria)).count() < 4;
+        if(disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
+            numObrigatorias++;
         else
-            return listaDisciplinas.stream().filter(disciplina -> disciplina.getTipoDisciplina().equals(TipoDisciplina.Optativa)).count() < 2;
+            numOptativas++;
     }
 
     /**
      * Retira a Disciplina da lista de disciplinas do aluno
      *
-     * @param nomeDisciplina chave para busca na lista das disciplinas
-     * @return True caso a disciplina for retirada, False caso ela não exista nas disciplinas dos alunos
+     * @param disciplina O aluno será removido da disciplina
      */
-    public boolean cancelarMatricula(String nomeDisciplina) {
-        listaDisciplinas.removeIf(disciplina -> disciplina.getNome().equals(nomeDisciplina));
-        return false;
+    public void cancelarMatricula(Disciplina disciplina) {
+        disciplina.removerAluno(this);
+
+        if(disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
+            numObrigatorias--;
+        else
+            numOptativas--;
+    }
+
+    public void setNumObrigatorias(Integer numObrigatorias) {
+        this.numObrigatorias = numObrigatorias;
+    }
+
+    public boolean disciplinaIsMax(TipoDisciplina tipo) {
+        if(tipo == TipoDisciplina.Obrigatoria)
+            return numObrigatorias <= MaxOBRIGATORIAS;
+        else
+            return numOptativas <= MaxOPTATIVAS;
+    }
+
+    public void setNumOptativas(Integer numOptativas) {
+        this.numOptativas = numOptativas;
     }
 }

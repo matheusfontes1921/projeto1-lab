@@ -8,10 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Professor extends Usuario {
-    //#REGION ATTRIBUTES
-    private List<Disciplina> disciplinas;
     //#ENDREGION
-
+    List<Disciplina> disciplinas;
     /*Construtor para criação de novo professor, sendo que o mesmo
     será identificado através de nome, email e senha.
     Além disso, na inicialização de um usuário do tipo professor será

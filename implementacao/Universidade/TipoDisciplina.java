@@ -4,12 +4,16 @@ public enum TipoDisciplina {
     /*ENUM que será implementado na classe Disciplina,
     onde ficarão disponíveis as opções de matéria optativa ou obrigatória
      */
-    Obrigatoria(4),
-    Optativa(2);
+    Obrigatoria("obrigatoria"),
+    Optativa("optativa");
 
-    final int valor;
+    private final String  valor;
 
-    TipoDisciplina(int valor) {
+    TipoDisciplina(String valor) {
         this.valor = valor;
+    }
+
+    public String getValor() {
+        return this.valor;
     }
 }

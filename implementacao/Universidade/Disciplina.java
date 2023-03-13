@@ -16,6 +16,7 @@ public class Disciplina {
     private Professor professor;
     private TipoDisciplina tipo;
     private List<Aluno> alunos = new ArrayList<>();
+    private Boolean ativa = false;
 
     //#ENDREGION
 
@@ -32,9 +33,11 @@ public class Disciplina {
         @param aluno o aluno que será inserido da classe aluno
         se a disciplina está disponível, o aluno será inserido no array de alunos na disciplina
      */
-    public void adicionarAluno(Aluno aluno) {
-        if (disciplinaMatriculavel() && aluno.matricular(this))
-            throw new Error("Numero maximo de alunos atingido");
+    public void matricular(Aluno aluno) {
+        if (!this.disciplinaMatriculavel())
+            throw new RuntimeException("Numero maximo de alunos atingido");
+        else if(aluno.disciplinaIsMax(this.tipo))
+            throw new RuntimeException("Numero maximo de displinas " + this.tipo.getValor() + " alcançada");
         alunos.add(aluno);
     }
 
@@ -61,7 +64,8 @@ public class Disciplina {
     void ativarDisciplina() {
     }
 
-    //#region GETTERS & SETTERS
+//  #region GETTERS & SETTERS
+
     public TipoDisciplina getTipoDisciplina() {
         return tipo;
     }
@@ -69,5 +73,10 @@ public class Disciplina {
     public List<Aluno> alunosMatriculados() {
         return this.alunos;
     }
-    //#endregion
+
+    public String getNome() {
+        return nome;
+    }
+
+//  #endregion
 }
