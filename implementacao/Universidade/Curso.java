@@ -1,14 +1,14 @@
 package Universidade;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+
 
 public class Curso {
     //#REGION ATTRIBUTES
 
     private String nome;
     private Integer creditos;
-    private List<Disciplina> disciplinas = new ArrayList<>();
+    private LinkedList<Disciplina> disciplinas = new LinkedList<>();
 
     //#END REGION
 
@@ -20,5 +20,10 @@ public class Curso {
     public void addDisciplina(Disciplina disciplina) {
         disciplinas.add(disciplina);
     }
+
+    public LinkedList<Disciplina> getDisciplinas() {
+        return new LinkedList<>(this.disciplinas);
+    }
+
 
 }

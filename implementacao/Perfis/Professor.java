@@ -1,34 +1,28 @@
 package Perfis;
 
+import Universidade.Curso;
 import Universidade.Disciplina;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Professor extends Usuario {
-    //#ENDREGION
-    List<Disciplina> disciplinas;
+    Curso curso;
+
     /*Construtor para criação de novo professor, sendo que o mesmo
     será identificado através de nome, email e senha.
     Além disso, na inicialização de um usuário do tipo professor será
     passado por parâmetro uma lista de disciplinas lecionados por esse.
      */
-    public Professor(String nome, String email, String senha, List<Disciplina> disciplinas) {
+    public Professor(String nome, String email, String senha, Curso curso) {
         super(nome, email, senha);
-        disciplinas = new ArrayList<>();
+
+        this.curso = curso;
     }
 
+    public Map<Disciplina, LinkedList<Aluno>> alunosMatriculadosPorDisciplina() {
+        Map<Disciplina, LinkedList<Aluno>> alunoPorDisciplina = new HashMap<>();
 
-    public void addDisciplina(Disciplina disciplina) {
-        disciplinas.add(disciplina);
-    }
-
-    public Map<Disciplina, List<Aluno>> alunosMatriculadosPorDisciplina() {
-        Map<Disciplina, List<Aluno>> alunoPorDisciplina = new HashMap<>();
-
-        for (Disciplina disciplina : this.disciplinas) {
+        for (Disciplina disciplina : this.curso.getDisciplinas()) {
             alunoPorDisciplina.put(disciplina, disciplina.alunosMatriculados());
         }
         return alunoPorDisciplina;

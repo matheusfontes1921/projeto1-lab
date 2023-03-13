@@ -4,6 +4,7 @@ import Perfis.Aluno;
 import Perfis.Professor;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Disciplina {
@@ -15,7 +16,7 @@ public class Disciplina {
     private String nome;
     private Professor professor;
     private TipoDisciplina tipo;
-    private List<Aluno> alunos = new ArrayList<>();
+    private LinkedList<Aluno> alunos = new LinkedList<>();
     private Boolean ativa = false;
 
     //#ENDREGION
@@ -60,8 +61,10 @@ public class Disciplina {
         return true;
     }
 
-    //TODO ATIVAR DISCIPLINA
-    void ativarDisciplina() {
+    // DONE ATIVAR DISCIPLINA
+    public void ativarDisciplina() {
+        if(this.alunos.size() >= LIMITE_MIN_ALUNOS)
+            this.ativa = true;
     }
 
 //  #region GETTERS & SETTERS
@@ -70,8 +73,8 @@ public class Disciplina {
         return tipo;
     }
 
-    public List<Aluno> alunosMatriculados() {
-        return this.alunos;
+    public LinkedList<Aluno> alunosMatriculados() {
+        return new LinkedList<>(this.alunos);
     }
 
     public String getNome() {

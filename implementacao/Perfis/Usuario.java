@@ -1,6 +1,6 @@
 package Perfis;
 
-public abstract class Usuario implements Logavel {
+public abstract class Usuario implements ILogavel {
 
     //#REGION ATTRIBUTES
     private String nome;
