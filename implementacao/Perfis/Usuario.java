@@ -3,9 +3,9 @@ package Perfis;
 public abstract class Usuario implements ILogavel {
 
     //#REGION ATTRIBUTES
-    private String nome;
-    private String email;
-    private String senha;
+    protected String nome;
+    protected String email;
+    protected String senha;
     //#endregion
 
     // private final String senhaReal = "123";
@@ -27,4 +27,10 @@ public abstract class Usuario implements ILogavel {
         return (this.senha.equals(senhaReal));
     }
     */
+
+    @Override
+    public String toString() {
+        return nome + " " + email;
+    }
+
 }

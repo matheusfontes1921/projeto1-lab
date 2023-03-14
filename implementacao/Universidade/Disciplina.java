@@ -13,9 +13,9 @@ public class Disciplina {
     private static final Integer LIMITE_ALUNOS = 60;
     private static final Integer LIMITE_MIN_ALUNOS = 3;
 
-    private String nome;
+    private final String nome;
     private Professor professor;
-    private TipoDisciplina tipo;
+    private final TipoDisciplina tipo;
     private LinkedList<Aluno> alunos = new LinkedList<>();
     private Boolean ativa = false;
 
@@ -37,7 +37,7 @@ public class Disciplina {
     public void matricular(Aluno aluno) {
         if (!this.disciplinaMatriculavel())
             throw new RuntimeException("Numero maximo de alunos atingido");
-        else if(aluno.disciplinaIsMax(this.tipo))
+        else if (aluno.disciplinaIsMax(this.tipo))
             throw new RuntimeException("Numero maximo de displinas " + this.tipo.getValor() + " alcançada");
         alunos.add(aluno);
     }
@@ -63,7 +63,7 @@ public class Disciplina {
 
     // DONE ATIVAR DISCIPLINA
     public void ativarDisciplina() {
-        if(this.alunos.size() >= LIMITE_MIN_ALUNOS)
+        if (this.alunos.size() >= LIMITE_MIN_ALUNOS)
             this.ativa = true;
     }
 
@@ -81,5 +81,29 @@ public class Disciplina {
         return nome;
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public String imprimeAlunos() {
+        StringBuilder resultado = new StringBuilder();
+
+        for (var aluno : alunos) {
+            resultado.append(aluno).append("\n");
+        }
+        return resultado.toString();
+    }
+
+    public String isAberta() {
+        if (ativa) return "Matricula Aberta";
+        else return "Matriculas Fechadas";
+    }
+
 //  #endregion
+
+    @Override
+    public String toString() {
+        return nome + "\n" + tipo + "\n" + imprimeAlunos() + "\n" + isAberta();
+    }
+
 }

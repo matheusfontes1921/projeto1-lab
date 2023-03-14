@@ -27,7 +27,7 @@ public class Aluno extends Usuario {
     public void matricular(Disciplina disciplina) {
         disciplina.matricular(this);
 
-        if(disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
+        if (disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
             numObrigatorias++;
         else
             numOptativas++;
@@ -41,7 +41,7 @@ public class Aluno extends Usuario {
     public void cancelarMatricula(Disciplina disciplina) {
         disciplina.removerAluno(this);
 
-        if(disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
+        if (disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
             numObrigatorias--;
         else
             numOptativas--;
@@ -52,7 +52,7 @@ public class Aluno extends Usuario {
     }
 
     public boolean disciplinaIsMax(TipoDisciplina tipo) {
-        if(tipo == TipoDisciplina.Obrigatoria)
+        if (tipo == TipoDisciplina.Obrigatoria)
             return numObrigatorias <= MaxOBRIGATORIAS;
         else
             return numOptativas <= MaxOPTATIVAS;
@@ -61,4 +61,6 @@ public class Aluno extends Usuario {
     public void setNumOptativas(Integer numOptativas) {
         this.numOptativas = numOptativas;
     }
+
 }
+
