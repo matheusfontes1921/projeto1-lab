@@ -3,9 +3,7 @@ package Universidade;
 import Perfis.Aluno;
 import Perfis.Professor;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Disciplina {
 
@@ -14,6 +12,7 @@ public class Disciplina {
     private static final Integer LIMITE_MIN_ALUNOS = 3;
 
     private final String nome;
+    private Curso curso;
     private Professor professor;
     private final TipoDisciplina tipo;
     private LinkedList<Aluno> alunos = new LinkedList<>();
@@ -23,7 +22,11 @@ public class Disciplina {
 
     //Construtor para inicialização do aluno, professor e tipo da disciplina
     //utilização do enum
-    Disciplina(String nome, Professor professor, TipoDisciplina tipo) {
+    Disciplina(String nome, Professor professor, TipoDisciplina tipo, Curso curso) {
+        if(curso.getDisciplinas().stream().anyMatch(disciplina -> disciplina.getNome().equals(nome)))
+            throw new RuntimeException("Disciplina já existe");
+
+        this.curso = curso;
         this.nome = nome;
         this.professor = professor;
         this.tipo = tipo;
@@ -39,6 +42,9 @@ public class Disciplina {
             throw new RuntimeException("Numero maximo de alunos atingido");
         else if (aluno.disciplinaIsMax(this.tipo))
             throw new RuntimeException("Numero maximo de displinas " + this.tipo.getValor() + " alcançada");
+        else if(curso.getUniversidade().alunoJaMatriculado(this))
+            throw new RuntimeException("Aluno já matriculado nessa disciplina");
+
         alunos.add(aluno);
     }
 
@@ -94,16 +100,17 @@ public class Disciplina {
         return resultado.toString();
     }
 
-    public String isAberta() {
-        if (ativa) return "Matricula Aberta";
-        else return "Matriculas Fechadas";
+    public boolean isAberta() {
+        return ativa;
     }
 
 //  #endregion
 
     @Override
     public String toString() {
-        return nome + "\n" + tipo + "\n" + imprimeAlunos() + "\n" + isAberta();
+        if(ativa)
+            return nome + "\n" + tipo + "\n" + imprimeAlunos() + "\n";
+        return nome + " - " + "Disciplina cancelada";
     }
 
 }

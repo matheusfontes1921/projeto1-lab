@@ -3,7 +3,6 @@ package Perfis;
 import Universidade.Disciplina;
 import Universidade.TipoDisciplina;
 
-
 public class Aluno extends Usuario {
     private final Integer MaxOBRIGATORIAS = 4;
     private final Integer MaxOPTATIVAS = 2;
@@ -11,6 +10,7 @@ public class Aluno extends Usuario {
 
     private Integer numObrigatorias = 0;
     private Integer numOptativas = 0;
+    private Integer valorMensalidade;
 
 
     public Aluno(String nome, String email, String senha) {
@@ -60,10 +60,13 @@ public class Aluno extends Usuario {
         this.numOptativas = numOptativas;
     }
 
-
-    public String dadosUsuario() {
-        return "Aluno " + nome + " " + email;
-
+    public void setValorMensalidade(Integer valor) {
+        this.valorMensalidade = valor;
     }
+
+    public Integer getValorMensalidade() {
+        return valorMensalidade;
+    }
+
 }
 
