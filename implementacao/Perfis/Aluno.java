@@ -3,8 +3,6 @@ package Perfis;
 import Universidade.Disciplina;
 import Universidade.TipoDisciplina;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Aluno extends Usuario {
     private final Integer MaxOBRIGATORIAS = 4;
@@ -62,5 +60,10 @@ public class Aluno extends Usuario {
         this.numOptativas = numOptativas;
     }
 
+
+    public String dadosUsuario() {
+        return "Aluno " + nome + " " + email;
+
+    }
 }
 

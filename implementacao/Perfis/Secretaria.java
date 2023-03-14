@@ -36,5 +36,7 @@ public class Secretaria extends Usuario {
     void notificaSistemaCobranca() {
     }
 
-
+    public String dadosUsuario() {
+        return "Secretaria " + nome + " " + email;
+    }
 }
