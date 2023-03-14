@@ -3,9 +3,6 @@ package Perfis;
 import Universidade.Disciplina;
 import Universidade.TipoDisciplina;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Aluno extends Usuario {
     private final Integer MaxOBRIGATORIAS = 4;
     private final Integer MaxOPTATIVAS = 2;
@@ -13,6 +10,7 @@ public class Aluno extends Usuario {
 
     private Integer numObrigatorias = 0;
     private Integer numOptativas = 0;
+    private Integer valorMensalidade;
 
 
     public Aluno(String nome, String email, String senha) {
@@ -60,6 +58,14 @@ public class Aluno extends Usuario {
 
     public void setNumOptativas(Integer numOptativas) {
         this.numOptativas = numOptativas;
+    }
+
+    public void setValorMensalidade(Integer valor) {
+        this.valorMensalidade = valor;
+    }
+
+    public Integer getValorMensalidade() {
+        return valorMensalidade;
     }
 
 }
