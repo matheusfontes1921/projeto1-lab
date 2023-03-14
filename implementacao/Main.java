@@ -43,7 +43,7 @@ public class Main {
 
     private void cadastraSecretaria() {
         var dados = pegaDadosUsuario();
-        Secretaria secretaria = new Secretaria(dados[0], dados[1], dados[2]);
+        Secretaria secretaria = new Secretaria(dados[0], dados[1], dados[2], puc);
     }
 
     private void cadastraProfessor() {
@@ -55,7 +55,6 @@ public class Main {
         var dados = pegaDadosUsuario();
         Aluno aluno = new Aluno(dados[0], dados[1], dados[2]);
         var alunoString = aluno.toString();
-        if ()
     }
 
     private String[] pegaDadosUsuario() {
