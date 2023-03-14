@@ -34,10 +34,7 @@ public class Main {
                     case 1 -> cadastraUsuario();
                     case 2 -> System.out.println("Pagina Login");
                     case 0 -> invalido = false;
-                    default -> {
-                        System.out.println("Digite um numero entre 0 e 2");
-                        invalido = true;
-                    }
+                    default -> System.out.println("Digite um numero entre 0 e 2");
                 }
             } catch (Exception e) {
                 System.out.println("Digite Um número válido");
@@ -65,24 +62,23 @@ public class Main {
                 opcao = entrada.nextInt();
 
                 switch (opcao) {
-                    case 1:
+                    case 1 -> {
                         cadastraAluno();
                         invalido = false;
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         cadastraProfessor();
                         invalido = false;
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         cadastraSecretaria();
                         invalido = false;
-                        break;
-                    case 0:
+                    }
+                    case 0 -> {
                         printaMenu();
                         invalido = false;
-                        break;
-                    default:
-                        System.out.println("Digite um número entre 1 e 3");
+                    }
+                    default -> System.out.println("Digite um número entre 1 e 3");
                 }
             } catch (Exception e) {
                 System.out.println("Digite um número válido");

@@ -3,14 +3,14 @@ package Universidade;
 import Perfis.Aluno;
 import Perfis.Professor;
 import Perfis.Usuario;
-import Utilitários.ListaDeDados;
+import Utilitarios.Arquivo;
 
 import java.util.LinkedList;
 
 public class Universidade {
     private LinkedList<Curso> cursos;
     private LinkedList<Usuario> usuarios;
-    ListaDeDados listaDados;
+    Arquivo listaDados;
 
     String nome;
 
@@ -21,14 +21,12 @@ public class Universidade {
 
     public LinkedList<Disciplina> getDisciplinas(Professor professor) {
         LinkedList<Disciplina> disciplinas = new LinkedList<>();
-        this.cursos.forEach(curso -> {
-            curso.getDisciplinas().forEach(
-                    disciplina -> {
-                        if (disciplina.getProfessor() == professor)
-                            disciplinas.add(disciplina);
-                    }
-            );
-        });
+        this.cursos.forEach(curso -> curso.getDisciplinas().forEach(
+                disciplina -> {
+                    if (disciplina.getProfessor() == professor)
+                        disciplinas.add(disciplina);
+                }
+        ));
 
         return disciplinas;
     }
@@ -41,20 +39,18 @@ public class Universidade {
 
     public LinkedList<Disciplina> disciplinaPorAluno(Aluno aluno) {
         LinkedList<Disciplina> disciplinas = new LinkedList<>();
-        this.cursos.forEach(curso -> {
-            curso.getDisciplinas().forEach(
-                    disciplina -> {
-                        if (disciplina.alunosMatriculados().contains(aluno))
-                            disciplinas.add(disciplina);
-                    }
-            );
-        });
+        this.cursos.forEach(curso -> curso.getDisciplinas().forEach(
+                disciplina -> {
+                    if (disciplina.alunosMatriculados().contains(aluno))
+                        disciplinas.add(disciplina);
+                }
+        ));
 
         return disciplinas;
     }
 
     public LinkedList<Curso> getCursos() {
-        return new LinkedList<Curso>(cursos);
+        return new LinkedList<>(cursos);
     }
 
     public boolean alunoJaMatriculado(Disciplina disciplina) {
@@ -68,4 +64,7 @@ public class Universidade {
         this.cursos.add(curso);
     }
 
+    public Arquivo getListaDados() {
+        return listaDados;
+    }
 }

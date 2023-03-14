@@ -17,6 +17,7 @@ public class Aluno extends Usuario {
         super(nome, email, senha);
     }
 
+
     /**
      * Método que adiciona uma disciplina a grade do aluno
      *
@@ -66,6 +67,11 @@ public class Aluno extends Usuario {
 
     public Integer getValorMensalidade() {
         return valorMensalidade;
+    }
+
+    @Override
+    public String dadosUsuario() {
+        return "Aluno " + nome + " " + email;
     }
 
 }
