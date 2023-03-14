@@ -45,4 +45,8 @@ public class Secretaria extends Usuario {
     }
 
 
+
+    public String dadosUsuario() {
+        return "Secretaria " + nome + " " + email + " " + senha;
+    }
 }

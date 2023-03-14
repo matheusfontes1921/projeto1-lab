@@ -1,11 +1,5 @@
 package Perfis;
-
-import Universidade.Curso;
-import Universidade.Disciplina;
 import Universidade.Universidade;
-
-import java.util.*;
-
 public class Professor extends Usuario {
     Universidade universidade;
 
@@ -24,5 +18,8 @@ public class Professor extends Usuario {
         universidade.getDisciplinas(this).forEach(System.out::println);
     }
 
+    public String dadosUsuario() {
+        return "Professor " + nome + " " + email + " " + senha;
+    }
 
 }
