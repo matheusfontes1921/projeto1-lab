@@ -16,12 +16,12 @@ public class Secretaria extends Usuario {
     //#ENDREGION
 
     //Construtor para secretaria que possui os mesmos parametros do professor, exceto a lista de disciplinas
-    public Secretaria(String nome, String email, String senha ) {
+    public Secretaria(String nome, String email, String senha, Universidade universidade) {
         super(nome, email, senha);
         professores = new ArrayList<>();
         alunos = new ArrayList<>();
         disciplinas = new ArrayList<>();
-
+        this.universidade = universidade;
     }
 
     /* deixei o esqueleto para ver se faz sentido para vocês

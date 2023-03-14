@@ -91,7 +91,7 @@ public class Main {
 
     private static void cadastraSecretaria() {
         var dados = pegaDadosUsuario();
-        Secretaria secretaria = new Secretaria(dados[0], dados[1], dados[2]);
+        Secretaria secretaria = new Secretaria(dados[0], dados[1], dados[2],puc);
         var usuarioString = secretaria.dadosUsuario();
         if (!puc.getListaDados().contains(dados[1])) { // Consulta se o email ja existe na lista
             puc.getListaDados().escrever(usuarioString);
