@@ -12,7 +12,7 @@ public class Arquivo {
     public boolean escrever(String texto) {
         try {
             FileWriter escritor = new FileWriter(arquivo, true);
-            escritor.write(texto+"\n");
+            escritor.write(texto + "\n");
             escritor.close();
             return true;
         } catch (Exception e) {
@@ -47,7 +47,25 @@ public class Arquivo {
             System.out.println("Erro no arquivo");
         }
 
-
         return false;
+    }
+
+    public String procuraUsuario(String email) {
+        String resultado="";
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(arquivo));
+            String linha;
+            while ((linha = leitor.readLine()) != null) {
+                if (linha.contains(email)) {
+                    resultado += linha;
+                    return resultado;
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Erro no arquivo");
+        }
+        return resultado;
     }
 }

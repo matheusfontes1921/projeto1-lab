@@ -19,7 +19,7 @@ public class Professor extends Usuario {
     }
 
     public String dadosUsuario() {
-        return "Professor " + nome + " " + email;
+        return "Professor " + nome + " " + email + " " + senha;
     }
 
 }

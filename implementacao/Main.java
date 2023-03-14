@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         printaMenu();
+
     }
 
     private static void printaMenu() {
@@ -32,16 +33,53 @@ public class Main {
 
                 switch (opcao) {
                     case 1 -> cadastraUsuario();
-                    case 2 -> System.out.println("Pagina Login");
+                    case 2 -> fazerlogin();
                     case 0 -> invalido = false;
-                    default -> System.out.println("Digite um numero entre 0 e 2");
+                    default -> {
+                        System.out.println("Digite um numero entre 0 e 2");
+                        invalido = true;
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Digite Um número válido");
                 entrada.nextLine(); // limpa o buffer de entrada
             }
-            if (!invalido) {
-                entrada.close();
+        }
+    }
+
+    //TODO Login
+    private static void fazerlogin() {
+        boolean invalido = true;
+        var opcao = 0;
+        Scanner entrada = new Scanner(System.in);
+
+        while (invalido) {
+            try {
+                printaUsuarios();
+                opcao = entrada.nextInt();
+
+                switch (opcao) {
+                    case 1 -> {
+                        System.out.println("login aluno");
+                        invalido = false;
+                    }
+                    case 2 -> {
+                        System.out.println("login prof");
+                        invalido = false;
+                    }
+                    case 3 -> {
+                        System.out.println("login secretaria");
+                        invalido = false;
+                    }
+                    case 0 -> {
+                        printaMenu();
+                        invalido = false;
+                    }
+                    default -> System.out.println("Digite um número entre 1 e 3");
+                }
+            } catch (Exception e) {
+                System.out.println("Digite um número válido");
+                entrada.nextLine();
             }
         }
     }
@@ -53,12 +91,7 @@ public class Main {
 
         while (invalido) {
             try {
-                limpaConsole();
-                System.out.println("Digite o número do tipo do Usuário que deseja cadastrar");
-                System.out.println("1 - Aluno");
-                System.out.println("2 - Professor");
-                System.out.println("3 - Secretária");
-                System.out.println("0 - Voltar ao menu");
+                printaUsuarios();
                 opcao = entrada.nextInt();
 
                 switch (opcao) {
@@ -82,16 +115,23 @@ public class Main {
                 }
             } catch (Exception e) {
                 System.out.println("Digite um número válido");
-                entrada.nextLine(); // Limpa o buffer de entrada para evitar loop infinito
+                entrada.nextLine();
             }
         }
+    }
 
-        entrada.close();
+    private static void printaUsuarios() {
+        limpaConsole();
+        System.out.println("Digite o número do tipo do Usuário");
+        System.out.println("1 - Aluno");
+        System.out.println("2 - Professor");
+        System.out.println("3 - Secretária");
+        System.out.println("0 - Voltar ao menu");
     }
 
     private static void cadastraSecretaria() {
         var dados = pegaDadosUsuario();
-        Secretaria secretaria = new Secretaria(dados[0], dados[1], dados[2],puc);
+        Secretaria secretaria = new Secretaria(dados[0], dados[1], dados[2], puc);
         var usuarioString = secretaria.dadosUsuario();
         if (!puc.getListaDados().contains(dados[1])) { // Consulta se o email ja existe na lista
             puc.getListaDados().escrever(usuarioString);
@@ -149,5 +189,20 @@ public class Main {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    public static String[] transformarStringEmVetor(String str) {
+        String[] vetor = new String[3];
+        String[] partes = str.split(" ");
+        StringBuilder nome = new StringBuilder();
+        int i = 1;
+        while (!partes[i].contains("@")) {
+            nome.append(partes[i] + " ");
+            i++;
+        }
+        vetor[0] = nome.toString().trim();
+        vetor[1] = partes[i]; // e-mail
+        vetor[2] = partes[i + 1]; // senha
+        return vetor;
     }
 }

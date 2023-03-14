@@ -16,7 +16,7 @@ public class Universidade {
 
     public Universidade(String nome) {
         this.nome = nome;
-//        listaDados =
+        listaDados = new Arquivo("implementacao/Utilitarios/listaUsuarios.txt");
     }
 
     public LinkedList<Disciplina> getDisciplinas(Professor professor) {
@@ -67,4 +67,29 @@ public class Universidade {
     public Arquivo getListaDados() {
         return listaDados;
     }
+
+    public boolean validaLogin(String email, String senha) {
+        if (listaDados.procuraUsuario(email).equals("")) {
+            return false;
+        } else {
+            var dados = transformarStringEmVetor(listaDados.procuraUsuario(email));
+            return dados[1].equals(email) && dados[2].equals(senha);
+        }
+    }
+
+    private static String[] transformarStringEmVetor(String str) {
+        String[] vetor = new String[3];
+        String[] partes = str.split(" ");
+        StringBuilder nome = new StringBuilder();
+        int i = 1;
+        while (!partes[i].contains("@")) {
+            nome.append(partes[i] + " ");
+            i++;
+        }
+        vetor[0] = nome.toString().trim();
+        vetor[1] = partes[i]; // e-mail
+        vetor[2] = partes[i + 1]; // senha
+        return vetor;
+    }
+
 }

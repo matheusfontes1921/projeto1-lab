@@ -71,7 +71,7 @@ public class Aluno extends Usuario {
 
     @Override
     public String dadosUsuario() {
-        return "Aluno " + nome + " " + email;
+        return "Aluno " + nome + " " + email + " " + senha;
     }
 
 }
