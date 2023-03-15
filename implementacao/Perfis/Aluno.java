@@ -23,13 +23,15 @@ public class Aluno extends Usuario {
      *
      * @param disciplina A disciplina que será inserida
      */
-    public void matricular(Disciplina disciplina) {
-        disciplina.matricular(this);
+    public Disciplina matricular(Disciplina disciplina) {
+        Disciplina disciplina1 = disciplina.matricular(this);
 
         if (disciplina.getTipoDisciplina() == TipoDisciplina.Obrigatoria)
             numObrigatorias++;
         else
             numOptativas++;
+
+        return disciplina1;
     }
 
     /**
