@@ -37,7 +37,7 @@ public class Disciplina {
         @param aluno o aluno que será inserido da classe aluno
         se a disciplina está disponível, o aluno será inserido no array de alunos na disciplina
      */
-    public void matricular(Aluno aluno) {
+    public Disciplina matricular(Aluno aluno) {
         if (!this.disciplinaMatriculavel())
             throw new RuntimeException("Numero maximo de alunos atingido");
         else if (aluno.disciplinaIsMax(this.tipo))
@@ -46,6 +46,8 @@ public class Disciplina {
             throw new RuntimeException("Aluno já matriculado nessa disciplina");
 
         alunos.add(aluno);
+
+        return this;
     }
 
     public void removerAluno(Aluno aluno) {

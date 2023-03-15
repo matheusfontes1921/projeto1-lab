@@ -28,7 +28,7 @@ public class Secretaria extends Usuario {
     como a secretaria tem que gerar curriculo com professores, alunos e disciplinas,
     faríamos um for each em cada um desses temas e retornaria um novo array contento isso tudo
      */
-    private void geraCurriculo() {
+    public void geraCurriculo() {
         System.out.println("\n----------------------------------\n");
         universidade.getCursos().forEach(curso -> {
             System.out.println("|" + curso + "\t|\n");

@@ -27,5 +27,9 @@ public abstract class Usuario implements ILogavel {
         return nome + " " + email;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
 
 }

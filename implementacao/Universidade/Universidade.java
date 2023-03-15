@@ -2,9 +2,11 @@ package Universidade;
 
 import Perfis.Aluno;
 import Perfis.Professor;
+import Perfis.Secretaria;
 import Perfis.Usuario;
 import Utilitarios.Arquivo;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Universidade {
@@ -16,7 +18,39 @@ public class Universidade {
 
     public Universidade(String nome) {
         this.nome = nome;
+        usuarios = new LinkedList<>();
+        cursos = new LinkedList<Curso>();
         listaDados = new Arquivo("implementacao/Utilitarios/listaUsuarios.txt");
+        preencherUsuarioList();
+    }
+
+    private void preencherUsuarioList() {
+        try {
+            listaDados.lerLinha().forEach(linha -> {
+                String[] linhaArray = Universidade.transformarStringEmVetor(linha);
+                Usuario usuario;
+                switch (linhaArray[3].toLowerCase()) {
+                    case "aluno" -> {
+                        usuarios.push(new Aluno(linhaArray[0], linhaArray[1], linhaArray[2]));
+                        break;
+                    }
+                    case "professor" -> {
+                        usuarios.add(new Professor(linhaArray[0], linhaArray[1], linhaArray[2], this));
+                        break;
+                    }
+                    case "secretaria" -> {
+                        usuarios.add(new Secretaria(linhaArray[0], linhaArray[1], linhaArray[2], this));
+                        break;
+                    }
+                    default -> {
+                        System.out.println("Error");
+                        break;
+                    }
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public LinkedList<Disciplina> getDisciplinas(Professor professor) {
@@ -77,19 +111,28 @@ public class Universidade {
         }
     }
 
-    private static String[] transformarStringEmVetor(String str) {
-        String[] vetor = new String[3];
+    public static String[] transformarStringEmVetor(String str) {
+        String[] vetor = new String[4];
         String[] partes = str.split(" ");
         StringBuilder nome = new StringBuilder();
         int i = 1;
         while (!partes[i].contains("@")) {
-            nome.append(partes[i] + " ");
+            nome.append(partes[i]).append(" ");
             i++;
         }
         vetor[0] = nome.toString().trim();
         vetor[1] = partes[i]; // e-mail
         vetor[2] = partes[i + 1]; // senha
+        vetor[3] = partes[0];
         return vetor;
+    }
+
+    public LinkedList<Usuario> getUsuarios() {
+        return new LinkedList<>(usuarios);
+    }
+
+    public Usuario getUsuarioByEmail(String email) {
+        return usuarios.stream().filter(usuario -> usuario.getEmail().equals(email)).findFirst().orElse(null);
     }
 
 }

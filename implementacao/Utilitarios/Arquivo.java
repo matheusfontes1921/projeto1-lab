@@ -1,6 +1,8 @@
 package Utilitarios;
 
 import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Arquivo {
     private File arquivo;
@@ -21,14 +23,9 @@ public class Arquivo {
         return false;
     }
 
-    public String lerLinha(int numLinha) throws IOException {
+    public List<String> lerLinha() throws IOException {
         BufferedReader leitor = new BufferedReader(new FileReader(arquivo));
-        String linha = null;
-        for (int i = 1; i <= numLinha; i++) {
-            linha = leitor.readLine();
-            if (linha == null) break;
-        }
-        return linha;
+        return leitor.lines().toList();
     }
 
     public boolean contains(String texto) {
